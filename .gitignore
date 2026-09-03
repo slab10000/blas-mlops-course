@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtual environments (created in Week 1, Part 3 Step 3)
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Data (see data/README.md — DVC-tracked starting Week 5)
+data/*
+!data/README.md
+
+# OS / editor cruft
+.DS_Store
+.vscode/
+*.swp
+
+# MLflow / experiment tracking local artifacts
+mlruns/
+wandb/

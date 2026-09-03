@@ -1,0 +1,28 @@
+# MLOps Course — pinned Python dependencies
+# Installed into your Week 1 project venv with: pip install -r environment/requirements.txt
+# Versions are pinned for reproducibility (see Week 2 lecture on reproducibility).
+# Review/update version pins each semester before Week 1.
+
+# Week 1
+rich==13.7.1
+
+# Week 2 — experiment tracking
+mlflow==2.14.1
+wandb==0.17.4
+
+# Week 3-5 — data
+pandas==2.2.2
+scikit-learn==1.5.1
+requests==2.32.3
+great-expectations==0.18.19
+dvc==3.51.2
+
+# Week 8-9 — serving
+fastapi==0.111.1
+uvicorn==0.30.3
+
+# Week 10 — testing
+pytest==8.2.2
+
+# General utility
+python-dotenv==1.0.1
