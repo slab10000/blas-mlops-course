@@ -23,4 +23,7 @@ data/*
 
 # MLflow / experiment tracking local artifacts
 mlruns/
+mlflow.db
+mlflow.db-*
+confusion_matrix.png
 wandb/
