@@ -10,10 +10,24 @@ then commit and push this file as part of the `week01-setup` branch / PR.
 
 ```
 $ python --version
-(paste output here)
+Python 3.11.16
 
 $ python hello_env.py
-(paste output here)
+
+Your environment is alive.
+
+                            Week 1 Environment Check
+┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Check          ┃ Result                                                      ┃
+┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Python version │ 3.11.16                                                     │
+│ Executable     │ /Users/blasmorenolaguna/Documents/TODO/University/Machine   │
+│                │ Learning Ops/lab1/lab1project/.venv/bin/python              │
+│ Platform       │ Darwin                                                      │
+└────────────────┴─────────────────────────────────────────────────────────────┘
+
+$ ssh -T git@github.com
+Hi slab10000! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
 ## Reflection (second PR)
