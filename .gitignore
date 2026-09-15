@@ -27,3 +27,6 @@ mlflow.db
 mlflow.db-*
 confusion_matrix.png
 wandb/
+
+# Week 3 raw API responses (run output)
+data/raw/
