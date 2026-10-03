@@ -1,0 +1,5 @@
+outs:
+- md5: d73aef4b3c2238999bd9d8dda56abb2a
+  size: 20206
+  hash: md5
+  path: loan_applications.csv
