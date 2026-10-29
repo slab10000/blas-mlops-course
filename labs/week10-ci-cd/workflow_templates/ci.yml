@@ -1,18 +1,14 @@
 name: ci
 
-# YOUR CODE (gap 1): add `push:` as a second trigger. Each trigger has its own `paths:` list under it
-# (the key is `paths:` with an s). The order of the two triggers does not matter. Example shape:
-#   on:
-#     pull_request:
-#       paths:
-#         - "labs/week10-ci-cd/**"
-#     push:
-#       paths:
-#         - "labs/week10-ci-cd/**"
 on:
   pull_request:
     paths:
       - "labs/week10-ci-cd/**"
+      - ".github/workflows/ci.yml"
+  push:
+    paths:
+      - "labs/week10-ci-cd/**"
+      - ".github/workflows/ci.yml"
 
 jobs:
   test:
@@ -22,14 +18,12 @@ jobs:
         working-directory: labs/week10-ci-cd
     steps:
       - uses: actions/checkout@v4
-      # Steps are a list: each one starts with "- " and the lines under it line up (indentation matters).
-      # A finished example of gaps 2 and 3 is in retrain.yml in this folder: copy its shape.
-      # Two kinds of step:
-      #   - uses: actions/checkout@v4         # a ready-made action (may have a `with:` block under it)
-      #   - name: Say hello                   # a step that runs a command
-      #     run: echo hello
-      # YOUR CODE (gap 2): set up Python 3.12 with actions/setup-python@v5
-      #   (add `cache: pip` and `cache-dependency-path: labs/week10-ci-cd/requirements.txt`)
-      # YOUR CODE (gap 3): a step that installs the requirements (pip install -r requirements.txt)
-      # YOUR CODE (gap 4): a step that runs the tests (pytest -q)
-      #   (the working directory is already set once for the whole job, so do not repeat it)
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: labs/week10-ci-cd/requirements.txt
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: Run the tests
+        run: pytest -q

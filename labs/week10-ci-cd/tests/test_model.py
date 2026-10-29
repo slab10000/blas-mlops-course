@@ -16,22 +16,18 @@ def risk(model, **changes):
 def test_model_beats_the_floor_and_the_baseline(model, data):
     X_train, X_test, y_train, y_test = data
     auc = roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
-    # The line above computed the AUC of the full model. Do the same for a simpler baseline model
-    # that sees only distance_km. Double brackets [["distance_km"]] keep it a one-column table:
-    #     baseline = LogisticRegression().fit(X_train[[___]], y_train)
-    #     baseline_auc = roc_auc_score(y_test, baseline.predict_proba(X_test[[___]])[:, 1])
-    # YOUR CODE: write those two lines, then assert:
-    #   (1) auc >= AUC_FLOOR     (2) auc >= baseline_auc + MARGIN
-    raise NotImplementedError
+    baseline = LogisticRegression().fit(X_train[["distance_km"]], y_train)
+    baseline_auc = roc_auc_score(
+        y_test, baseline.predict_proba(X_test[["distance_km"]])[:, 1]
+    )
+    assert auc >= AUC_FLOOR
+    assert auc >= baseline_auc + MARGIN
 
 
 def test_rain_raises_the_risk(model):
-    # risk(model, ...) returns the late probability of one order; you can change any field of it:
-    #     dry = risk(model, raining=___)
-    #     wet = risk(model, raining=___)
-    #     assert wet ___ dry
-    # YOUR CODE: assert that the same order has a higher late risk when raining=1 than when raining=0
-    raise NotImplementedError
+    dry = risk(model, raining=0)
+    wet = risk(model, raining=1)
+    assert wet > dry
 
 
 def test_probabilities_are_valid(model, data):
