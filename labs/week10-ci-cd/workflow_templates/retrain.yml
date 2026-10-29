@@ -1,14 +1,10 @@
 name: retrain
 
-# YOUR CODE (gap 1): also run when a pull request adds or changes files under labs/week10-ci-cd/data/incoming/
-# (keep `workflow_dispatch:`, it adds a manual "Run workflow" button). Example shape:
-#   on:
-#     workflow_dispatch:
-#     pull_request:
-#       paths:
-#         - "labs/week10-ci-cd/data/incoming/**"
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "labs/week10-ci-cd/data/incoming/**"
 
 jobs:
   retrain:
@@ -25,10 +21,8 @@ jobs:
           cache-dependency-path: labs/week10-ci-cd/requirements.txt
       - name: Install requirements
         run: pip install -r requirements.txt
-      # YOUR CODE (gap 2): add a step named "Data tests on the new file" that runs ONLY tests/test_data.py.
-      #   Same shape as the "Install requirements" step above (`- name:` then `run:`).
-      #   Put it here, after the install step and before "Retrain and compare".
-      #   (if it fails, the steps after it do not run: that is the default behaviour)
+      - name: Data tests on the new file
+        run: pytest -q tests/test_data.py
       - name: Retrain and compare with the champion
         run: python -m src.retrain
       - name: Keep the challenger model (only exists if it was promoted)
