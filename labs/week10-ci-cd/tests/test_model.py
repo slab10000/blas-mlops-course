@@ -3,7 +3,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 
 AUC_FLOOR = 0.70       # decided BEFORE looking at the result
-MARGIN = 0.5          # a new model must beat the baseline by at least this much
+MARGIN = 0.05          # a new model must beat the baseline by at least this much
 
 ORDER = dict(distance_km=4.0, items=3, hour=19, raining=0, courier_months=6, restaurant="sushi")
 
