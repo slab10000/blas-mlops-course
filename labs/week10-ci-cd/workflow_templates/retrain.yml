@@ -1,0 +1,33 @@
+name: retrain
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "labs/week10-ci-cd/data/incoming/**"
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/week10-ci-cd
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: labs/week10-ci-cd/requirements.txt
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: Data tests on the new file
+        run: pytest -q tests/test_data.py
+      - name: Retrain and compare with the champion
+        run: python -m src.retrain
+      - name: Keep the challenger model (only exists if it was promoted)
+        uses: actions/upload-artifact@v4
+        with:
+          name: challenger-model
+          path: labs/week10-ci-cd/models/challenger.joblib
+          if-no-files-found: ignore
