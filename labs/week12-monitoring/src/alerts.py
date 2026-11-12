@@ -7,4 +7,9 @@ def alert(psi_history, warn=0.10, act=0.25, windows=2):
     # Return "ACT: retrain candidate" if there are `windows` values and ALL are >= act,
     # else "WARN: investigate" if there are `windows` values and ALL are >= warn, else "ok".
     # Hint: all(v >= act for v in last)
-    raise NotImplementedError("TODO 3: finish alert() in src/alerts.py")
+    last = psi_history[-windows:]
+    if len(last) == windows and all(v >= act for v in last):
+        return "ACT: retrain candidate"
+    if len(last) == windows and all(v >= warn for v in last):
+        return "WARN: investigate"
+    return "ok"
